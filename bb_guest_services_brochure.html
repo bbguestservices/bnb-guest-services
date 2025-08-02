@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B&B Guest Services - Professional Co-Hosting Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        .wave-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #f39c12 100%);
+        }
+
+        .wave-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,20 600,100 900,60 C1050,40 1150,80 1200,60 L1200,120 L0,120 Z' fill='%23ffffff' opacity='0.1'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: wave 10s ease-in-out infinite alternate;
+        }
+
+        .wave-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,100 600,20 900,60 C1050,80 1150,40 1200,60 L1200,0 L0,0 Z' fill='%23f39c12' opacity='0.15'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: wave 8s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(-50px) translateY(-10px); }
+            100% { transform: translateX(50px) translateY(10px); }
+        }
+
+        .brochure {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,0 C300,40 600,80 900,40 C1050,20 1150,60 1200,40 L1200,120 L0,120 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .company-name {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro h2 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #3498db, #f39c12);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .service-subtitle {
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .benefits-list li {
+            font-size: 1.1em;
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #2c3e50;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pricing-label {
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price {
+            font-size: 1.1em;
+            color: #2c3e50;
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+
+        .discounted-price {
+            font-size: 1.3em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .add-ons {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 50px 40px;
+            margin-top: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .add-ons h3 {
+            font-size: 2.2em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .add-ons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .add-on-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #f39c12;
+        }
+
+        .add-on-name {
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 1;
+        }
+
+        .add-on-price {
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,120 C300,80 600,40 900,80 C1050,100 1150,60 1200,80 L1200,0 L0,0 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .footer h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 2.5em;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wave-bg"></div>
+    
+    <div class="brochure">
+        <header class="header">
+            <h1 class="company-name">B&B Guest Services</h1>
+            <p class="tagline">Professional Co-Hosting Solutions for Modern Hosts</p>
+        </header>
+
+        <main class="content">
+            <section class="intro">
+                <h2>Elevate Your Hosting Experience</h2>
+                <p>Transform your property into a five-star experience with our comprehensive co-hosting services. We handle the details, so you can focus on what matters most – growing your business and delighting your guests.</p>
+            </section>
+
+            <section class="services-grid">
+                <div class="service-card">
+                    <h3 class="service-title">Full-Service Co-Hosting</h3>
+                    <p class="service-subtitle">Complete hands-off hosting solution</p>
+                    <ul class="benefits-list">
+                        <li>Complete guest communication management</li>
+                        <li>Professional calendar & booking coordination</li>
+                        <li>Premium cleaning & laundry services</li>
+                        <li>Comprehensive inventory management</li>
+                        <li>Seamless check-in/check-out support</li>
+                        <li>Expert review management & optimization</li>
+                        <li>Detailed monthly performance analytics</li>
+                    </ul>
+                    <div class="pricing-section">
+                        <span class="pricing-label">Limited Time Offer</span>
+                        <div>
+                            <span class="price">20% of revenue</span>
+                            <span class="discounted-price">Only 15% of booking revenue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3 class="service-title">Turnover & Coordination</h3>
+                    <p class="service-subtitle">Perfect for hands-on hosts who need ground support</p>
+                    <ul class="benefits-list">
+                        <li>Professional cleaner scheduling & confirmation</li>
+                        <li>Thorough quality checks between stays</li>
+                        <li>Essential supplies restocking service</li>
+                        <li>Immediate damage & issue reporting</li>
+                        <li>Property maintenance coordination</li>
+                        <li>Guest-ready preparation guarantee</li>
+                    </ul>
+                    <div class="pricing-section">
+                        <span class="pricing-label">Special Rate</span>
+                        <div>
+                            <span class="price">$85-$100</span>
+                            <span class="discounted-price">$50–$75 per booking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3 class="service-title">Guest Messaging</h3>
+                    <p class="service-subtitle">24/7 professional guest communication</p>
+                    <ul class="benefits-list">
+                        <li>Instant response to all guest inquiries</li>
+                        <li>Detailed pre-arrival instructions</li>
+                        <li>Professional check-in coordination</li>
+                        <li>Checkout reminders & review requests</li>
+                        <li>Emergency guest support via phone/text</li>
+                        <li>Consistent brand voice maintenance</li>
+                    </ul>
+                    <div class="pricing-section">
+                        <span class="pricing-label">Introductory Price</span>
+                        <div>
+                            <span class="price">$45-$55</span>
+                            <span class="discounted-price">$25–$35 per booking</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="add-ons">
+                <h3>Premium Add-On Services</h3>
+                <div class="add-ons-grid">
+                    <div class="add-on-item">
+                        <span class="add-on-name">In-person check-in service</span>
+                        <span class="add-on-price">$20/visit</span>
+                    </div>
+                    <div class="add-on-item">
+                        <span class="add-on-name">Supply shopping & restocking</span>
+                        <span class="add-on-price">$25/hr</span>
+                    </div>
+                    <div class="add-on-item">
+                        <span class="add-on-name">Professional photography</span>
+                        <span class="add-on-price">$60/hour</span>
+                    </div>
+                    <div class="add-on-item">
+                        <span class="add-on-name">Listing optimization consultation</span>
+                        <span class="add-on-price">$50 flat</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <h3>Ready to Transform Your Hosting?</h3>
+            <p>We customize every package to your specific needs – whether you need short-term coverage, seasonal support, or full-time management. Our goal is simple: help you host better with less stress and better reviews.</p>
+        </footer>
+    </div>
+</body>
+</html>
