@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B&B Guest Services | Co-Hosting Solutions That Actually Work</title>
+    <meta name="description" content="Professional Airbnb co-hosting services in Montreal. We handle guest communication, cleaning coordination, and property management so you can focus on what matters.">
+    <meta name="keywords" content="Airbnb co-hosting, property management, Montreal, guest services, vacation rental management">
+    <meta name="author" content="B&B Guest Services">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="B&B Guest Services - Professional Co-Hosting Solutions">
+    <meta property="og:description" content="Stop managing, start earning. We handle the headaches of hosting so you can focus on growing your business.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="B&B Guest Services - Professional Co-Hosting Solutions">
+    <meta property="twitter:description" content="Stop managing, start earning. We handle the headaches of hosting so you can focus on growing your business.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #5a6c7d;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #3498db;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .service-description {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.3rem 0;
+            color: #5a6c7d;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .price-tag {
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #7f8c8d;
+            margin-right: 0.5rem;
+        }
+
+        /* Process Section */
+        .process {
+            background: #f8f9fa;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .step-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            color: #3498db;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #3498db;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">B&B Guest Services</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero loading">
+        <div class="hero-content">
+            <h1>Stop Managing. Start Earning.</h1>
+            <p>We handle the headaches of hosting so you can focus on what really matters – growing your business and actually enjoying your investment.</p>
+            <a href="#contact" class="cta-button">Let's Talk Business</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about loading">
+        <div class="container">
+            <h2 class="section-title">Why Hosts Choose Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>We Get It – Hosting Is Hard Work</h3>
+                    <p>You bought a property to make money, not to become a 24/7 customer service agent. Between guest messages, cleaning coordination, and trying to maintain those 5-star reviews, hosting can quickly turn into a full-time job you never signed up for.</p>
+                    <p>That's where we come in. We're not just another service provider – we're your business partners who understand that every booking matters, every review counts, and every guest interaction affects your bottom line.</p>
+                    <p>Based in Montreal but serving hosts everywhere, we handle properties both locally and virtually. Whether you need hands-on local support or remote management from anywhere in the world, we've got systems in place to keep your business running smoothly.</p>
+                    <p><strong>Virtual Services:</strong> Guest communication, booking management, review responses, pricing optimization, and coordinating with your local cleaning teams – all handled remotely with the same attention to detail.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">4.9★</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15hrs</span>
+                        <span class="stat-label">Saved Per Week</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Guest Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section loading">
+        <div class="container">
+            <h2 class="section-title">Services That Actually Move the Needle</h2>
+            <p class="section-subtitle">Choose what works for your situation. Mix and match. Scale up or down. It's your business – we just make it run smoother.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Virtual Co-Hosting</h3>
+                    <p class="service-description">Perfect for out-of-town owners or those with properties in different cities. We manage everything remotely while coordinating with your local cleaning teams.</p>
+                    <ul class="service-features">
+                        <li>Complete guest communication management</li>
+                        <li>Remote booking and calendar optimization</li>
+                        <li>Coordination with local cleaning services</li>
+                        <li>Virtual check-ins and troubleshooting</li>
+                        <li>Review management and responses</li>
+                        <li>Pricing strategy and market analysis</li>
+                        <li>Monthly performance reporting</li>
+                    </ul>
+                    <div class="price-tag">Remote Special</div>
+                    <div class="price"><span class="original-price">18%</span>12% of booking revenue</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Full-Service Co-Hosting</h3>
+                    <p class="service-description">Go completely hands-off with local Montreal support. We handle everything from booking to checkout, so you can focus on finding your next property or actually take that vacation.</p>
+                    <ul class="service-features">
+                        <li>All guest communication (pre-arrival to post-checkout)</li>
+                        <li>Calendar management and booking optimization</li>
+                        <li>Cleaning coordination and quality control</li>
+                        <li>Inventory management and restocking</li>
+                        <li>Review management and response</li>
+                        <li>Monthly performance reports</li>
+                        <li>Emergency guest support</li>
+                    </ul>
+                    <div class="price-tag">Launch Special</div>
+                    <div class="price"><span class="original-price">20%</span>15% of booking revenue</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3 class="service-title">Turnover & Coordination</h3>
+                    <p class="service-description">Perfect for hands-on hosts who just need reliable ground support. We handle the physical stuff – you handle the rest.</p>
+                    <ul class="service-features">
+                        <li>Professional cleaner scheduling and confirmation</li>
+                        <li>Property inspection between guests</li>
+                        <li>Supply restocking (toiletries, coffee, etc.)</li>
+                        <li>Damage assessment and photos</li>
+                        <li>Maintenance coordination</li>
+                        <li>Guest-ready preparation checklist</li>
+                    </ul>
+                    <div class="price-tag">Discounted Rate</div>
+                    <div class="price"><span class="original-price">$85-100</span>$50–75 per turnover</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3 class="service-title">Guest Communication</h3>
+                    <p class="service-description">Stop being glued to your phone. We handle all guest messages professionally and promptly, maintaining your brand voice.</p>
+                    <ul class="service-features">
+                        <li>Instant response to inquiries (avg 5 minutes)</li>
+                        <li>Pre-arrival instructions and local tips</li>
+                        <li>Check-in coordination and troubleshooting</li>
+                        <li>During-stay support and issue resolution</li>
+                        <li>Checkout reminders and review requests</li>
+                        <li>Bilingual support (French & English)</li>
+                    </ul>
+                    <div class="price-tag">Intro Pricing</div>
+                    <div class="price"><span class="original-price">$45-55</span>$25–35 per booking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section process loading">
+        <div class="container">
+            <h2 class="section-title">How We Make It Happen</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Free Consultation</h3>
+                    <p class="step-description">We analyze your current setup, identify pain points, and create a custom service package that fits your needs and budget.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Seamless Onboarding</h3>
+                    <p class="step-description">We integrate with your existing systems, train on your preferences, and start handling your bookings without missing a beat.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Ongoing Optimization</h3>
+                    <p class="step-description">We monitor performance, optimize processes, and provide regular reports so you always know how your business is performing.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Scale & Grow</h3>
+                    <p class="step-description">As your portfolio grows, our services scale with you. More properties, same peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact loading">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">Ready to Get Your Life Back?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Every day you handle these tasks yourself is money and time you're not investing in growing your business. Let's change that.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>Call or Text</h4>
+                        <p><a href="tel:5147188210">514-718-8210</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p><a href="mailto:bbguestservices1@gmail.com">bbguestservices1@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Service Area</h4>
+                        <p>Montreal (Local) + Virtual Services Worldwide</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <p style="font-size: 1.1rem;">Free consultation available. Professional service contracts included for your security and peace of mind.</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">Clear agreements, defined responsibilities, and transparent terms – because your business deserves that level of professionalism.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 B&B Guest Services. Professional co-hosting solutions for serious hosts.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(44, 62, 80, 0.98)';
+            } else {
+                nav.style.background = 'rgba(44, 62, 80, 0.95)';
+            }
+        });
+
+        // Intersection Observer for loading animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('loading');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.loading').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu toggle (if needed in future)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Performance optimization - lazy load heavy elements
+        if ('IntersectionObserver' in window) {
+            const lazyElements = document.querySelectorAll('.service-card, .process-step');
+            const lazyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        lazyObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            lazyElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                lazyObserver.observe(el);
+            });
+        }
+    </script>
+</body>
+</html>
